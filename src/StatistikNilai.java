@@ -20,8 +20,20 @@ public class StatistikNilai {
                 break;
             }
 
+            if (input < 0 || input > 100) {
+                System.out.println("   Ditolak, harus 0-100");
+                continue;
+            }
+
             daftar.add(input);
+
         } while (true);
+
+        if (daftar.isEmpty()) {
+            System.out.println("Tidak ada data nilai yang dimasukkan.");
+            scanner.close();
+            return;
+        }
 
         System.out.println();
         System.out.println("Nilai tersimpan : " + daftar);
