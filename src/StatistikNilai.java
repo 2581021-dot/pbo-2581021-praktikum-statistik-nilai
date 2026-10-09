@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Locale;
+import java.util.Collections;
 
 public class StatistikNilai {
 
@@ -61,6 +62,32 @@ public class StatistikNilai {
         }
         System.out.println("Tertinggi       : " + tertinggi);
         System.out.println("Terendah        : " + terendah);
+
+        int jumlahDiAtasRataRata = 0;
+        for (int nilai : daftar) {
+            if (nilai > rataRata) jumlahDiAtasRataRata++;
+        }
+        System.out.println("Di atas rata2   : " + jumlahDiAtasRataRata + " orang");
+        int[] jumlahGrade = new int[5];
+        for (int nilai : daftar) {
+            if (nilai >= 80)      jumlahGrade[0]++;
+            else if (nilai >= 70) jumlahGrade[1]++;
+            else if (nilai >= 60) jumlahGrade[2]++;
+            else if (nilai >= 50) jumlahGrade[3]++;
+            else                  jumlahGrade[4]++;
+        }
+        ArrayList<Integer> terurut = new ArrayList<>(daftar);
+        Collections.sort(terurut);
+        String[] namaGrade = {"A", "B", "C", "D", "E"};
+        System.out.print("Distribusi      : ");
+        for (int i = 0; i < jumlahGrade.length; i++) {
+            System.out.print(namaGrade[i] + "=" + jumlahGrade[i]);
+            if (i < jumlahGrade.length - 1) System.out.print(" ");
+        }
+        System.out.println();
+
+        System.out.println("Terurut         : " + terurut);
+        System.out.println("Urutan asli     : " + daftar);
         scanner.close();
     }
 }
