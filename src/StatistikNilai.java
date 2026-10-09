@@ -12,7 +12,9 @@ public class StatistikNilai {
         ArrayList<Integer> daftar = new ArrayList<>();
 
         System.out.println("===== STATISTIK NILAI KELAS =====");
+        System.out.println("Masukkan nilai (0-100)");
         System.out.println("Ketik -1 kalau sudah selesai.");
+        System.out.println("---------------------------------");
 
         do {
             System.out.print("Nilai ke-" + (daftar.size() + 1) + " : ");
@@ -37,7 +39,7 @@ public class StatistikNilai {
             return;
         }
 
-        System.out.println();
+        System.out.println("---------------------------------");
         System.out.println("Nilai tersimpan : " + daftar);
         System.out.println("Jumlah          : " + daftar.size());
 
@@ -46,14 +48,8 @@ public class StatistikNilai {
             total += nilai;
         }
         double rataRata = total / daftar.size();
-
         System.out.println("Rata-rata       : " + String.format(Locale.forLanguageTag("id-ID"), "%.2f", rataRata));
 
-        // Tertinggi & terendah: keduanya dimulai dari daftar.get(0).
-        // Kenapa? Kalau terendah dimulai dari 0, hasilnya salah saat semua nilai > 0
-        // (misal 80, 90 -> terendah tetap 0). Kalau tertinggi dimulai dari angka tetap
-        // seperti 0 atau 100, hasilnya bisa salah juga. Elemen pertama pasti bagian
-        // dari data, jadi titik awal paling aman untuk dibandingkan.
         int tertinggi = daftar.get(0);
         int terendah = daftar.get(0);
         for (int nilai : daftar) {
@@ -68,6 +64,7 @@ public class StatistikNilai {
             if (nilai > rataRata) jumlahDiAtasRataRata++;
         }
         System.out.println("Di atas rata2   : " + jumlahDiAtasRataRata + " orang");
+
         int[] jumlahGrade = new int[5];
         for (int nilai : daftar) {
             if (nilai >= 80)      jumlahGrade[0]++;
@@ -76,8 +73,10 @@ public class StatistikNilai {
             else if (nilai >= 50) jumlahGrade[3]++;
             else                  jumlahGrade[4]++;
         }
+
         ArrayList<Integer> terurut = new ArrayList<>(daftar);
         Collections.sort(terurut);
+
         String[] namaGrade = {"A", "B", "C", "D", "E"};
         System.out.print("Distribusi      : ");
         for (int i = 0; i < jumlahGrade.length; i++) {
@@ -88,6 +87,8 @@ public class StatistikNilai {
 
         System.out.println("Terurut         : " + terurut);
         System.out.println("Urutan asli     : " + daftar);
+        System.out.println("---------------------------------");
+
         scanner.close();
     }
 }
